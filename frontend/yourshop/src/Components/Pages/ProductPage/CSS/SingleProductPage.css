@@ -1,0 +1,34 @@
+#singleProductPageDiv{
+    width: 60%;
+    margin: auto;
+    display: flex;
+    gap: 20px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#contentDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+#contentDiv p{
+
+    text-align: left;
+}
+
+#contentDiv button{
+    background-color: #6684a7;
+    color: white;
+    opacity: 0.9;
+}
+#contentDiv button:hover{
+    background-color: #6684a7;
+    color: white;
+    opacity: 1;
+}

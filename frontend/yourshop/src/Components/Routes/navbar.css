@@ -1,0 +1,57 @@
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #305766;
+    padding: 15px 0px;
+}
+
+#logodiv img{
+    height: 40px;
+    border-radius: 15px;
+}
+#logodiv img:hover{
+    transform: scale(1.05);
+}
+
+#searchBox{
+    width: 40%;
+}
+#cartDiv{
+    color: #f5c838;
+    font-size: larger;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid #f5c838;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+#cartDiv:hover{
+    color: #fac61a;
+    transform: scale(1.05);
+}
+
+#searchBox input::placeholder {
+    color: black;
+    opacity: 0.8; /* Firefox */
+  }
+
+#loginSignupDiv button{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+     color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  transition: all .3s;
+    padding: 10px 20px;
+}
+
+#loginSignupDiv button:hover{
+background: #ffffff;
+transform: scale(1.05);
+box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
