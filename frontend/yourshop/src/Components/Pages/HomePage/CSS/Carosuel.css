@@ -1,0 +1,22 @@
+#CarDiv{
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#CarDiv img{
+    width: 100%;
+    height: 100%;
+}
+
+#SecondCarDiv{
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#SecondCarDiv img{
+    width: 100%;
+    height: 450px;
+}
