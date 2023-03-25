@@ -1,10 +1,24 @@
 import { Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './CSS/Header.css'
+import jwt_decode from "jwt-decode"
+
 
 const Header = () => {
     const [role,setRole]=useState("User")
+    const token =JSON.parse(localStorage.getItem("token"))
+    const decoded = jwt_decode(token);
+
+    useEffect(()=>{
+      if(token){
+        setRole(decoded.role)
+      }
+      else{
+        setRole("User")
+      }
+  
+    },[token])
   return (
     <div id='headerDiv'>
 
@@ -16,8 +30,10 @@ const Header = () => {
         <Link to='/products'> <Text> Discounted</Text> </Link>
       </div>
 
-      <div id="rightHeaser">
-        <Text>{role || 'User'}</Text>
+      <div id="rightHeader">
+      <Link to='/productDashboard'> <Text> Product Dashboard</Text> </Link>
+      <Link to='/usersDashboard'> <Text> User Dashboard</Text> </Link>
+        <Text>You are :- {role || 'User'}</Text>
       </div>
     </div>
   )

@@ -1,0 +1,29 @@
+#updateProductModal{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#updateProductModal div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+#updateProductModal input::placeholder {
+    color: black;
+    opacity: 0.8; /* Firefox */
+  }
+
+
+  #singleProductModal{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+#singleProductModal div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+

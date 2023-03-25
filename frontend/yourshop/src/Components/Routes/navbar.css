@@ -50,8 +50,89 @@
     padding: 10px 20px;
 }
 
-#loginSignupDiv button:hover{
+/* #loginSignupDiv button:hover{
 background: #ffffff;
 transform: scale(1.05);
 box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+} */
+
+/* ---------------- */
+#searchBox .searchbox{
+    position: absolute;
+    background-color: #fff;
+    color: #fc2779;
+    top: 55px;
+    width: 610px;
 }
+
+.searchbox *{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+
+/*  */
+
+
+.loginbox{
+    position: absolute;
+    background-color: #fff;
+    color: #fc2779;
+    top: 60px;
+    width: 120px;
+    height: auto;
+    /* margin-left: -46px; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+    z-index: 1;
+}
+.loginbox .logout{
+    width: 100%;
+    height: 45px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    margin-top: 2px;
+    justify-content: center;
+    align-items: center;
+}
+.loginbox .adminn{
+    width: 100%;
+    height: 45px;
+    margin-top: 2px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginbox .adminn h1{
+    font-size: 17px;
+    color: black;
+    text-align: center;
+    margin-top: -1px;
+}
+.loginbox .account{
+    width: 100%;
+    height: 45px;
+    margin-top: 2px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginbox .account h1{
+    font-size: 17px;
+    color: black;
+    text-align: center;
+    margin-top: -1px;
+}
+.loginbox .logout h1{
+    font-size: 17px;
+    color: black;
+}
+
+/*  */
+

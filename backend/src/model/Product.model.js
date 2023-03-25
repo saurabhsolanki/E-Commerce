@@ -10,7 +10,8 @@ const ProductSchema = new Schema({
   offer_price: { type: String, required: true },
   type: { type: String, required: true },
   discount: { type: String, required: true },
-  image: { type: String, required: true }
+  image: { type: String, required: true },
+  datecreated:Date,
 });
 
 const Product = model("product", ProductSchema);

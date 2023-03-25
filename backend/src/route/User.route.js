@@ -1,4 +1,5 @@
 const User = require('../model/User.model');
+const {isAuth}=require('../middleware/authentication')
 
 const express = require('express');
 const  jwt = require('jsonwebtoken');
@@ -37,7 +38,7 @@ app.post('/signup', async (req, res) => {
 });
 
 
-app.post('/login', async (req, res) => {
+app.post('/login',async (req, res) => {
     const { email, password } = req.body;
     console.log('req.body: ', req.body);
     try {
@@ -50,11 +51,44 @@ app.post('/login', async (req, res) => {
             return res.status(400).send({ message: 'Password is incorrect' });
         }
 
-        const token = jwt.sign({ _id: user._id,name:user.name }, 'SECRET1234', { expiresIn: '7 days' });
-        return res.status(200).send({ message: 'Login successful' , token,user : user.name});
+        const token = jwt.sign({ _id: user._id,name:user.name,role:user.role }, 'SECRET1234', { expiresIn: '7 days' });
+        res.cookie("usercookie",token,{
+          expires:new Date(Date.now()+9000000),
+          httpOnly:true
+        }); 
+        return res.status(200).send({ message: 'Login successful' , token, user : user.name, role:user.role, userData:user});
     } catch (error) {
         return res.status(404).send({ message : 'Something went wrong' });
     }
+});
+
+
+app.get("/validuser",isAuth,async(req,res)=>{
+  try {
+      const ValidUserOne = await User.findOne({_id:req.userId});
+      res.status(201).json({status:201,ValidUserOne});
+  } catch (error) {
+      res.status(401).json({status:401,error});
+  }
+});
+
+// logout User 
+app.get("/logoutuser",isAuth,async(req,res)=>{
+  try {
+    req.rootUser.tokens =  req.rootUser.tokens.filter((curelem)=>{
+        return curelem.token !== req.token
+    });
+
+    res.clearCookie("usercookie",{path:"/"});
+
+    req.rootUser.save();
+
+    res.status(201).json({status:201})
+
+} catch (error) {
+    res.status(401).json({status:401,error})
+    console.log(error)
+}
 });
 
 
