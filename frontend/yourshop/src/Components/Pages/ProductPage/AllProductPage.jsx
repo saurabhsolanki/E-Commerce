@@ -32,7 +32,7 @@ const AllProductPage = () => {
         <div id="filtering">
         <div id="filter">
         <Filter setCat={setCat}/>
-        <Input type="text" placeholder='Serach By Brand Here...' onChange={(e)=>setSearch(e.target.value)}/>
+        <Input type="text" placeholder='Serach By Brand Here...' onChange={(e)=>setSearch(e.target.value)} width="200px"/>
         </div>
         <div id="sortBy">
           <Text as='b'>Sort By Price:-</Text>

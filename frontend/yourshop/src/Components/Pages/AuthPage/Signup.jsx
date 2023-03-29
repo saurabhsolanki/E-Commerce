@@ -41,13 +41,13 @@ const Signup = () => {
                 navigate("/login")
             },1000)
                 }).catch((err)=>{
-                    console.log(err.response.data)
-                    return toast({
-                        title: `${err.response.data.message}, Please use another email`,
-                        status: 'error',
-                        duration: 3000,
-                        isClosable: true,
-                      })
+                    console.log(err)
+                    // return toast({
+                    //     title: `${err.response.data.message}, Please use another email`,
+                    //     status: 'error',
+                    //     duration: 3000,
+                    //     isClosable: true,
+                    //   })
                 })
       }
 

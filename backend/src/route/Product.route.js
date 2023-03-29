@@ -19,14 +19,14 @@ app.get("/", async (req, res) => {
   if(cat!="all"){
     query.category=cat
   }
-  const{page=1,limit=12,orderBy="id",order="asc"}=req.query
+  const{page=1,limit=12,orderBy="id",order="asc"}=req.query || ""
 
   try {
     const user = await User.find(query)
     .sort({[orderBy]:order==="asc"?1:-1})
     .skip((page-1)*limit)
     .limit(limit)
-    console.log(user)
+    // console.log(user)
     return res.send(user);
   } catch (error) {
     console.log(error)
@@ -43,14 +43,16 @@ app.get("/:id", async (req, res) => {
 
 // adding the new Product
 app.post('/', async (req, res) => {
-  const { id,category,brand, title, price, original_price,offer_price, type, discount, image} = req.body;
+  const id= Math.floor(Math.random() * 1000);
+  const { category,brand, title, price, original_price,offer_price, type, discount, image} = req.body;
+  console.log(req.body)
   try {
-      const product = await User.create({  id,category,brand, title, price, original_price,offer_price, type, discount, image});
+      const product = await User.create({id,category,brand, title, price, original_price,offer_price, type, discount, image});
       console.log('product: ', product);
 
       return res.status(201).send({ message : 'Product Added Successfully' });
       } catch (error) {
-      return res.status(404).send({ error: 'Something went wrong' });
+      return res.status(404).send({ message: 'Something went wrong...' });
   }
 });
 
@@ -58,7 +60,7 @@ app.post('/', async (req, res) => {
 // Deleteing the Single Product
 app.delete("/:id", async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
+    const user = await User.findByIdAndDelete(req.params.id,{new:true});
     return res.send({ message: "Product Deleted", data: user });
   } catch (error) {
     res.status(500).send(error.message);

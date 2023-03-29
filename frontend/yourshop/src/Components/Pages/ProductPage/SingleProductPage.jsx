@@ -1,12 +1,18 @@
 import axios from 'axios'
 import './CSS/SingleProductPage.css'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Button, Text } from '@chakra-ui/react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Box, Button, Text } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux'
+import { addCartItems } from '../../../Redux/Cart/action'
 
 const SingleProductPage = () => {
+
+  const nav = useNavigate()
   const [data,setData]=useState({})
   const {id}=useParams()
+  const [qua,setQua]=useState(1)
+  const dispatch=useDispatch()
 
   const getData=()=>{
     axios.get(`http://localhost:8080/products/${id}`).then((res)=>{
@@ -15,7 +21,17 @@ const SingleProductPage = () => {
     })
   }
 
-  console.log(data)
+  function ADDTOCART(){
+   try {
+    dispatch(addCartItems(id,qua))
+    alert('item added to cart')
+    nav('/cartPage')
+   } catch (error) {
+    console.log("addtocart error",error)
+   }
+  }
+
+  console.log("single",data)
   useEffect(()=>{
     getData()
   },[])
@@ -23,21 +39,28 @@ const SingleProductPage = () => {
     <div id='singleProductPageDiv'>
 
       <div id="imageDiv">
-      <img src="https://assets.ajio.com/medias/sys_master/root/20210403/AcbB/6068b6caf997dd7b64643def/dennislingo_premium_attire_green_striped_slim_fit_shirt.jpg" alt="" />
+      <img src={data.image} alt="" />
       </div>
 
       <div id="contentDiv">
-        <Text  fontSize="lg" as='b'>DENNISLINGO PREMIUM ATTIRE</Text>
+        <Text  fontSize="lg" as='b'>{data.brand}</Text>
         <br />
-        <Text fontSize="xs">New Price</Text>
-        <Text>Old Price</Text>
+        <Text fontSize="xs">New Price: {data.offer_price}</Text>
+        <Text>Old Price :{data.original_price}</Text>
         <br />
         <Text fontSize="lg" as='b'>About The Product :</Text>
         <Text>Color : All colors available</Text>
-        <Text>Category : Mens</Text>
+        <Text>Category : {data.category}</Text>
+        <Text>Type : {data.type}</Text>
         <Text>Shipping fee : Free shipping</Text>
           <br />
-        <Button>Add To Cart</Button>
+
+         <Box>
+         <Button isDisabled={qua===1} onClick={()=>setQua(qua-1)}>-</Button>
+          <Text as='b'>{qua}</Text>
+          <Button isDisabled={qua===5} onClick={()=>setQua(qua+1)}>+</Button>
+         </Box>
+        <Button onClick={ADDTOCART}>Add To Cart</Button>
       </div>
     </div>
   )

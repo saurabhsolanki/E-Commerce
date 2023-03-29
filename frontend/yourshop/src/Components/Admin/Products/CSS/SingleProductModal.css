@@ -1,0 +1,14 @@
+#singleProductModal{
+    display: flex;
+    gap: 10px;
+}
+#singleProductModal div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#singleProductModal div p{
+text-align: left;
+font-size: 15px;
+}
+

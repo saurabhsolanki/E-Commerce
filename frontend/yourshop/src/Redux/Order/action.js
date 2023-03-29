@@ -1,0 +1,22 @@
+import axios from 'axios'
+import { Get_Order_Failure, Get_Order_Request} from './actionType'
+
+export const getOrderRequest = () =>{
+    return {
+        type: Get_Order_Request
+    }
+}
+
+// export const getOrderSuccess = (payload) =>{
+//     return {
+//         type: Get_Order_Success,
+//         payload
+//     }
+    
+// }
+
+export const getOrderFailure = () =>{
+    return {
+        type: Get_Order_Failure
+    }
+}

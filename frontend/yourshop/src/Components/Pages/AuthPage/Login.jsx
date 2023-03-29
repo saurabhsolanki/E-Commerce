@@ -16,6 +16,8 @@ const Login = () => {
     const navigate = useNavigate();
     const toast = useToast()
     const dispatch=useDispatch()
+    const token =JSON.parse(localStorage.getItem("token"))
+
 
     function handleChange(e) {
         const { name, value } = e.target;

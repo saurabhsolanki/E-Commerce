@@ -1,0 +1,150 @@
+#addProductForm{
+    width: 30%;
+}
+  
+  #addProductForm form{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+  }
+
+  /* product List Container */
+
+  #productListContainer{
+    width: 70%;
+    margin-top: -100px;
+  }
+
+  #homeDiv{
+    border-radius: 15px;
+    width: 100%;
+    color: white;
+}
+
+#homeDiv .styled-table tbody{
+    overflow: scroll;
+}
+#homeDiv table{
+    margin-top: -140px;
+}
+#homeDiv img{
+    height: 100%;
+}
+
+.styled-table{
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    max-width: 900px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.styled-table thead tr{
+    background-color: teal;
+    color: wheat;
+    text-align: left;
+}
+
+.styled-table th, .styled-table td{
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr{
+    border-bottom: 1px solid gray;
+    background-color: rgb(68, 68, 68);
+    opacity: 0.8;
+}
+
+/* .styled-table tbody tr:nth-of-type(even){
+    background-color: rgb(232, 232, 232);
+} */
+
+.styled-table tbody tr:hover{
+    background-color: #4b4b4b;
+    /* transform: scale(1.01); */
+}
+
+.styled-table tbody tr:last-of-type{
+    border-bottom: 2px solid green;
+}
+
+.btn{
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn-edit{
+    background-color: rgb(6, 122, 84);
+}
+
+.btn-delete{
+    background-color: rgb(238, 80, 80);
+}
+.btn-delete:hover{
+    background-color: rgb(226, 33, 33);
+    transform: scale(1.05);
+}
+
+.btn-view{
+    background-color: wheat;
+    color: black;
+}
+.btn-view:hover{
+    background-color: rgb(241, 202, 131);
+    color: black;
+    transform: scale(1.05);
+}
+
+.btn-contact{
+    background-color: #e82764;
+    margin-bottom: 10px;
+}
+
+
+/* filtering */
+#sortingAndfiltering{
+    width: 100%;
+    margin: auto;
+}
+
+#productListContainer #sortingAndfiltering{
+display: flex;
+flex-direction: column;
+gap: 20px;
+background-color: #4b4b4b;
+opacity: 0.8;
+}
+#productListContainer #sortingAndfiltering:hover{
+    background-color: #4b4b4b;
+opacity: 1;
+}
+
+#sortingAndfiltering #filtering{
+display: flex;
+width: 100%;
+justify-content: space-between;
+align-items: center;
+}
+#sortingAndfiltering #paginationDiv{
+    width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
