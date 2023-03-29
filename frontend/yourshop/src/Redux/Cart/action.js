@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addToCartSuccess, deleteToCartSuccess, SHIPPING_INFO } from "./actionType";
+import { addToCartSuccess, deleteToCartSuccess, Get_Order_Success, SHIPPING_INFO } from "./actionType";
 
 
 
@@ -36,4 +36,12 @@ export const shippingInfo = (data) => async(dispatch,getState) => {
         payload: data
     })
     localStorage.setItem("shipping", JSON.stringify(data))
+}
+
+export const getOrderSuccess = (payload) =>{
+    return {
+        type: Get_Order_Success,
+        payload
+    }
+    
 }

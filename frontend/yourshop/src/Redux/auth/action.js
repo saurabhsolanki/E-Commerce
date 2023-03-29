@@ -1,5 +1,5 @@
 import axios from "axios";
-import { all_user_success, login_success, user_deleted, VALID_USER } from "./authType";
+import { all_user_success, login_success, LOGOUT_USER, user_deleted, VALID_USER } from "./authType";
 
 export const LoginApi = (creds,toast,navigate) => async (dispatch) => {
   try {
@@ -26,6 +26,13 @@ export const LoginApi = (creds,toast,navigate) => async (dispatch) => {
     })
   }
 };
+
+
+export const getLogoutUser = () =>{
+  return {
+      type: LOGOUT_USER
+  }
+}
 
 export const getAllUser=(data)=>(dispatch)=>{
   axios.get("http://localhost:8080/user").then((res)=>{

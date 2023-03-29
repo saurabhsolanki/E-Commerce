@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios, { Axios } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useToast } from '@chakra-ui/react'
-import { getOrderSuccess } from '../../../Redux/Order/action'
+import { getOrderSuccess } from '../../../Redux/Cart/action'
 import { addCartItems } from '../../../Redux/Cart/action'
 // import NavSecond from '../component/header/NavSecond'
 
@@ -102,6 +102,7 @@ const Payment = () => {
       )
       console.log(dataa)
       dispatch(getOrderSuccess(dataa.data))
+      counter() 
     }
 }
 
@@ -125,22 +126,35 @@ function counter(){
         duration: 3000,
         isClosable: true,
       })
+    } 
+    else if(i==5){
+      toast({
+        position: 'top',
+        title: 'Thanks for shopping from YourShop.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      localStorage.removeItem("cart");
+      sessionStorage.removeItem("orderInfo");
       clearInterval(id)
+      nav('/')
     } 
     i++
   },1000)
+  
 }
 
 
   useEffect(() => {
-    if(isSuccess === true){
-      counter()
-      localStorage.removeItem("cart");
-      // dispatch(addCartItems([]))
-      sessionStorage.removeItem("orderInfo");
-      nav('/')
-    }
-  }, [isSuccess])
+    // if(isSuccess === true){
+    //   counter()
+    //   localStorage.removeItem("cart");
+    //   // dispatch(addCartItems([]))
+    //   sessionStorage.removeItem("orderInfo");
+    //   nav('/')
+    // }
+  }, [])
 
   return (
     <>

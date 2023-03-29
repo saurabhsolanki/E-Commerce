@@ -5,12 +5,12 @@ import { Radio, RadioGroup, Stack } from '@chakra-ui/react'
 function Filter({setCat}) {
 
   return (
-  <RadioGroup >
+    <RadioGroup >
     <Stack direction='row'>
-      <Radio  colorScheme='green'value='all' onChange={(e)=>setCat(e.target.value)} defaultChecked>All</Radio>
-      <Radio colorScheme='green'  value='Mens' onChange={(e)=>setCat(e.target.value)}>Mens</Radio>
-      <Radio colorScheme='green'  value='Womens' onChange={(e)=>setCat(e.target.value)}>Womens</Radio>
-      <Radio colorScheme='green'  value='Children' onChange={(e)=>setCat(e.target.value)}>Children</Radio>
+      <Radio className='filterRadio' colorScheme='green' value='all' onChange={(e)=>setCat(e.target.value)} defaultChecked >All</Radio>
+      <Radio className='filterRadio' colorScheme='green'  value='Mens' onChange={(e)=>setCat(e.target.value)}>Mens</Radio>
+      <Radio className='filterRadio' colorScheme='green'  value='Womens' onChange={(e)=>setCat(e.target.value)}>Womens</Radio>
+      <Radio className='filterRadio' colorScheme='green'  value='Children' onChange={(e)=>setCat(e.target.value)}>Children</Radio>
     </Stack>
   </RadioGroup>
   );

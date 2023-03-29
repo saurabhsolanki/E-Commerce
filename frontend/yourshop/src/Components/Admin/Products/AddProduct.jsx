@@ -1,4 +1,5 @@
 import { Button, Input, Text } from '@chakra-ui/react'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addProduct } from '../../../Redux/Product/action'
@@ -28,8 +29,8 @@ const AddProduct = () => {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        // console.log(data)
         dispatch(addProduct(data))
+        // setData("")
     }
 
 

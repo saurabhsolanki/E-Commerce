@@ -1,4 +1,5 @@
-import { Button, Text } from '@chakra-ui/react'
+import { Button, Text} from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import './CSS/usersList.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,10 +8,19 @@ import { deleteUser, getAllUser } from '../../../Redux/auth/action'
 const UsersList = () => {
 const data=useSelector(store=>store.auth.allUser)
 const dispatch=useDispatch()
+const toast = useToast()
 
 const handleDelete=(id)=>{
 console.log(id)
 dispatch(deleteUser(id))
+toast({
+  position: 'top',
+  title: 'User deleted Successfully',
+  status: 'error',
+  duration: 3000,
+  isClosable: true,
+})
+dispatch(getAllUser())
 }
 
 useEffect(()=>{

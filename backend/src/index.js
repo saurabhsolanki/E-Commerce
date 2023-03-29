@@ -17,7 +17,6 @@ app.use("/user",AuthData)
 app.use("/products", ProductData)
 app.use("/order",router)
 
-
 // mongoose.set('strictQuery', false);
 app.listen(8080, async() => {
     console.log('server started on port 8080')

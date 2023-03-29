@@ -1,6 +1,6 @@
-import { addToCartSuccess, deleteToCartSuccess, SHIPPING_INFO } from "./actionType";
+import { addToCartSuccess, deleteToCartSuccess, Get_Order_Success, SHIPPING_INFO } from "./actionType";
 
-export const cartReducer=(state={cartItems:[],shippingInfo:{}},action)=>{
+export const cartReducer=(state={cartItems:[],shippingInfo:{}, order:{}},action)=>{
     switch (action.type) {
         case addToCartSuccess:
             const item = action.payload;
@@ -18,15 +18,31 @@ export const cartReducer=(state={cartItems:[],shippingInfo:{}},action)=>{
                     cartItems:[...state.cartItems, item]
                 }
         }
+
+
         case deleteToCartSuccess:
             return{
                 ...state,
                 cartItems: state.cartItems.filter((i) => i._id !== action.payload) 
-            }
+        }
+
+
         case SHIPPING_INFO: 
         return{
             ...state,
             shippingInfo: action.payload
+        }
+
+
+        case Get_Order_Success: {
+            return {
+                ...state,
+                isLoading: true,
+                isError: false,
+                isSuccess:true,
+                order: action.payload,
+                cartItems:[]
+            }
         }
         default:
             return state;

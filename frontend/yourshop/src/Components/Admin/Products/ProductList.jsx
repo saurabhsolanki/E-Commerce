@@ -16,33 +16,62 @@ import {
   } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteProduct, getProducts } from '../../../Redux/Product/action'
+import { addProduct, deleteProduct, getProducts } from '../../../Redux/Product/action'
 import axios from 'axios'
 import Filter from './Filtering'
 import { SingleProductModal } from './SingleProductModal'
 import UpdateProductModal from './UpdateProduct'
 
-
-
 const ProductList = () => {
-  const data=useSelector(store=>store.products.data)
+
+
+  // const data=useSelector(store=>store.products.data)
+  const [data, setdata] = useState([])
   const dispatch=useDispatch()
   const [cat,setCat]=useState("all")
   const [search,setSearch]=useState("")
   const [page,setPage]=useState(1)
   const [limit,setLimit]=useState(3)
   const [sort, setSort] = useState("asc");
+
+   async function getData() {
+
+    try {
+      const res = await fetch(`http://localhost:8080/products?search=${search}&category=${cat}&page=${page}&limit=${limit}&orderBy=offer_price&order=${sort}`)
+      const data = await res.json()
+      console.log(data)
+      setdata(data)
+    } catch (error) {
+      console.log(error)
+    }
+    dispatch(getProducts(cat,search,page,limit,sort))
+  }
   
 
-  const handleDelete=(id)=>{
-    dispatch(deleteProduct(id))
+  const handleDelete=async(id)=>{
+
+    await axios.delete(`http://localhost:8080/products/${id}`).then((res)=>{
+        console.log("res del data",res.data)
+        dispatch(getProducts())
+        alert("Item Deleted")
+    }).then((res)=>{
+     console.log(res)
+     getData()
+    }).catch((er)=>{
+      console.log(er)
+    })
+    // console.log(res)
+    // dispatch(deleteProduct(id))
+    // alert("Product Deleted Succesfully")
   }
 
   useEffect(()=>{
-    dispatch(getProducts(cat,search,page,limit,sort))
+    getData()
   },[cat,search,page,limit,sort,data.length])
 
   return (
+    <>
+
     <div id='productListContainer'>
               <div id="sortingAndfiltering">
 
@@ -122,6 +151,7 @@ const ProductList = () => {
       </table>
     </div>
     </div>
+    </>
   )
 }
 

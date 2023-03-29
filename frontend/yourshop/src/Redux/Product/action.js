@@ -8,6 +8,7 @@ export const addProduct=(data)=>(dispatch)=>{
     console.log("add",data)
     axios.post("http://localhost:8080/products",data).then((res)=>{
         // dispatch(getProducts())
+        console.log(res)
         alert("Product Added")
     }).catch((err)=>{
         console.log(err.response.data.message)

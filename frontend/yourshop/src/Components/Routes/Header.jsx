@@ -3,22 +3,25 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './CSS/Header.css'
 import jwt_decode from "jwt-decode"
+import { useSelector } from 'react-redux'
 
 
 const Header = () => {
     const [role,setRole]=useState("User")
-    const token =JSON.parse(localStorage.getItem("token"))
-    const decoded = jwt_decode(token);
+    const user = useSelector((store) => store.auth);
+    console.log(user)
+    // const token =JSON.parse(localStorage.getItem("token")) || []
+    // const decoded = jwt_decode(token);
 
-    useEffect(()=>{
-      if(token){
-        setRole(decoded.role)
-      }
-      else{
-        setRole("User")
-      }
+    // useEffect(()=>{
+    //   if(token){
+    //     setRole(decoded.role)
+    //   }
+    //   else{
+    //     setRole("User")
+    //   }
   
-    },[token])
+    // },[token])
   return (
     <div id='headerDiv'>
 
@@ -31,9 +34,13 @@ const Header = () => {
       </div>
 
       <div id="rightHeader">
-      <Link to='/productDashboard'> <Text> Product Dashboard</Text> </Link>
-      <Link to='/usersDashboard'> <Text> User Dashboard</Text> </Link>
-        <Text>You are :- {role || 'User'}</Text>
+        {
+          user.isAuthenticated && user.validUser.role == "admin" ? <>
+             <Link to='/productDashboard'> <Text> Product Dashboard</Text> </Link>
+            <Link to='/usersDashboard'> <Text> User Dashboard</Text> </Link>
+          </> : <Link to='/usersDashboard'> <Text> User Dashboard</Text> </Link>
+        }
+        <Text>You are :- {user.isAuthenticated ? user.validUser.role : "User"}</Text>
       </div>
     </div>
   )

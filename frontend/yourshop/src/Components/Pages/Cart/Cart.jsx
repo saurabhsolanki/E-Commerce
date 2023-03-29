@@ -132,7 +132,7 @@ const Cart = () => {
       </div>
 
     </div>
-          <div className="gif"  style={cartlength.length > 0 ? {display : 'none'} : {display : 'block'}} onClick={()=>{nav('/pro')}}>
+          <div className="gif"  style={cartlength.length > 0 ? {display : 'none'} : {display : 'block'}} onClick={()=>{nav('/products')}}>
             <img src='https://media.tenor.com/iFi3jJDlevMAAAAi/shopping-buy.gif' />
             <h2>Your shopping bag is Empty</h2>
             <h3>Start Shopping &nbsp;<i class="fa-solid fa-cart-shopping"></i></h3>

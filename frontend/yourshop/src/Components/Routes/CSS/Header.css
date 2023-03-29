@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 10px 20px;
     background-color: rgb(226, 226, 226);
+    /* margin-top: 68px; */
 }
 #leftHeader{
     display: flex;

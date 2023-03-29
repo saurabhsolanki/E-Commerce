@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import './navbar.css'
 import { Input, Text } from '@chakra-ui/react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { json, Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import jwt_decode from "jwt-decode"
 import SearchBar from './SearchBar'
+import { getLogoutUser } from '../../Redux/auth/action'
+import axios from 'axios'
 
 const init={
   name:"",
   role:""
 }
 
-const Navbar = () => {
+const Navbar = ({isAuthenticated}) => {
+
+
   const [role,setRole]=useState("")
   const [loginopen, setloginopen] = useState(false)
-  // const {name,role}=state
+  const dispatch = useDispatch()
   const user = useSelector((store) => store.auth);
   console.log("user auth",user)
   const token =JSON.parse(localStorage.getItem("token"))
@@ -23,21 +27,38 @@ const Navbar = () => {
 
   const decoded = jwt_decode(token);
  
-// console.log("decode token",decoded);
+console.log("decode token", isAuthenticated);
 
-const handleNavigate=()=>{
-    navigate("/login")
+const logoutuser = async() => {
+  let token = JSON.parse(localStorage.getItem("token"));
+  // console.log(token)
+
+  const res = await fetch("http://localhost:8080/user/logoutuser", {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": token,
+          Accept: "application/json"
+      }
+  });
+
+  const data = await res.json();
+
+  if (data.status == 201) {
+    dispatch(getLogoutUser())
+    isAuthenticated=false
+    // nav("/")
+    setloginopen(false)
+      alert('User logged out Successfully')
+      localStorage.removeItem("usersdatatoken");
+  } else {
+  }
 }
 
   useEffect(()=>{
-    if(token){
-      setUserName(decoded.name)
-    }
-    else{
-      setUserName("Login / signup")
-    }
+    
 
-  },[token])
+  },[])
 
   return (
     <div id='navbar'>
@@ -60,7 +81,7 @@ const handleNavigate=()=>{
       <button onClick={()=>{setloginopen(!loginopen)}}>
       <i class="fa-solid fa-user"></i>
       {
-        user.isAuthenticated?
+        isAuthenticated === true?
         < >
         {user.validUser.name}
         {
@@ -69,7 +90,7 @@ const handleNavigate=()=>{
                       <div className="account"  >
                         <h1>My Account</h1>
                       </div>
-                      <div className="logout"  >
+                      <div className="logout" onClick={()=>{logoutuser()}} >
                         <h1>Logout</h1>
                       </div>
                       <div className="adminn"  >
@@ -89,3 +110,4 @@ const handleNavigate=()=>{
 }
 
 export default Navbar
+

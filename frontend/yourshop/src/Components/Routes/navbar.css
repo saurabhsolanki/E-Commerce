@@ -27,14 +27,14 @@
     padding: 5px 10px;
     border-radius: 15px;
 }
-#cartDiv:hover{
+/* #cartDiv:hover{
     color: #fac61a;
     transform: scale(1.05);
-}
+} */
 
 #searchBox input::placeholder {
     color: black;
-    opacity: 0.8; /* Firefox */
+    opacity: 0.8; 
   }
 
 #loginSignupDiv button{
@@ -49,8 +49,8 @@
   transition: all .3s;
     padding: 10px 20px;
 }
-
-/* #loginSignupDiv button:hover{
+/* 
+#loginSignupDiv button:hover{
 background: #ffffff;
 transform: scale(1.05);
 box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -80,9 +80,10 @@ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     background-color: #fff;
     color: #fc2779;
     top: 60px;
-    width: 120px;
+    width: 130px;
     height: auto;
-    /* margin-left: -46px; */
+    margin-left: -16px;
+    margin-top: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;
     z-index: 1;
@@ -135,4 +136,3 @@ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 /*  */
-

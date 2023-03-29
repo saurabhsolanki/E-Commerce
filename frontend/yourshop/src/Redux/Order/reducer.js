@@ -9,15 +9,15 @@ export const orderReducer = (state={order:{}}, action) => {
                 isError: false
             }
         }
-        case Get_Order_Success: {
-            return {
-                ...state,
-                isLoading: true,
-                isError: false,
-                isSuccess:true,
-                order: action.payload
-            }
-        }
+        // case Get_Order_Success: {
+        //     return {
+        //         ...state,
+        //         isLoading: true,
+        //         isError: false,
+        //         isSuccess:true,
+        //         order: action.payload
+        //     }
+        // }
         case Get_Order_Failure: {
             return {
                 ...state,

@@ -1,12 +1,14 @@
 import axios from 'axios'
 import './CSS/SingleProductPage.css'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Box, Button, Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { addCartItems } from '../../../Redux/Cart/action'
 
 const SingleProductPage = () => {
+
+  const nav = useNavigate()
   const [data,setData]=useState({})
   const {id}=useParams()
   const [qua,setQua]=useState(1)
@@ -22,6 +24,8 @@ const SingleProductPage = () => {
   function ADDTOCART(){
    try {
     dispatch(addCartItems(id,qua))
+    alert('item added to cart')
+    nav('/cartPage')
    } catch (error) {
     console.log("addtocart error",error)
    }

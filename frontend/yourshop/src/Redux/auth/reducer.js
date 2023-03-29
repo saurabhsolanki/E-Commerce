@@ -1,4 +1,4 @@
-import { all_user_success, login_success, user_deleted, VALID_USER } from "./authType";
+import { all_user_success, login_success, LOGOUT_USER, user_deleted, VALID_USER } from "./authType";
 
 const initState = {
   token: "",
@@ -15,7 +15,7 @@ export const authReducer = (state = initState, { type, payload }) => {
         ...state,
         token: payload.token,
         userData: payload.userData,
-        isAuthenticated:true
+        
       };
     }
 
@@ -28,8 +28,17 @@ export const authReducer = (state = initState, { type, payload }) => {
       case VALID_USER:
         return {
           ...state,
-          validUser:payload.ValidUserOne
+          validUser:payload.ValidUserOne,
+          isAuthenticated:true
         }
+    
+        case LOGOUT_USER:{
+          return {
+              ...state,
+              isAuthenticated:false,
+              userData:null
+          }
+      }
 
     default:
       return state;
