@@ -19,12 +19,16 @@ header nav{
 }
 
 header nav .navlogo img{
-    width: 110px;
+    width: 150px;
     margin-top: -4px;
+    border-radius: 15px;
     /* height: 60px; */
     /* background-color: teal; */
     
 
+}
+header nav .navlogo img:hover{
+    transform: scale(1.05);
 }
 
 header nav .left{
@@ -245,6 +249,10 @@ header nav .drawer{
     background-color: red;
 }
 
+
+.signupButton:hover{
+    transform: scale(1.05);
+}
 
 @media (max-width:800px){
     header .hamburgur{

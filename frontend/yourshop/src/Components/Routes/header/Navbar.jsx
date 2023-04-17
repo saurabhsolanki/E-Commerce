@@ -185,13 +185,13 @@ const Navbar = ({isAuthenticated}) => {
                 }
               </>
                  : 
-              <Link to='/signup' ><a className="signupButton">&nbsp;&nbsp;&nbsp;Signin</a></Link>
+              <Link to='/signup' className="signupButton"><a>&nbsp;&nbsp;&nbsp;Signin</a></Link>
             }
           </div>
           <div className="cart_btn" >
-          <Link to='/cart'>
+          <Link to='/cart' className="signupButton">
             {/* Cart */}
-             <i class="fa-solid fa-shopping-cart" style={{ fontSize: "30px", color: "yellow"}} ></i>
+             <i class="fa-solid fa-shopping-cart" style={{ fontSize: "30px", color: "#ff7f00"}} ></i>
           </Link>
           </div>   
         </div>

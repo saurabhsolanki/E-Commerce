@@ -12,6 +12,7 @@ import AllProductPage from '../Pages/ProductPage/AllProductPage'
 import SingleProductPage from '../Pages/ProductPage/SingleProductPage'
 import Order from '../Pages/Shipping/Order'
 import Shipping from '../Pages/Shipping/Shipping'
+import Account from '../Pages/Account/Account'
 
 const AllRoutes = () => {
   return (
@@ -29,6 +30,7 @@ const AllRoutes = () => {
         <Route path='/shipping' element={<Shipping/>}/>
         <Route path='/order' element={<Order/>}/>
         <Route path='/payment' element={<Payment/>}/>
+        <Route path='/account' element={<Account/>}/>
 
       </Routes>
     </div>

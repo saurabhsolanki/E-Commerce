@@ -8,6 +8,7 @@ export const LoginApi = (creds,toast,navigate) => async (dispatch) => {
     console.log("userData",res.data)
     localStorage.setItem("token", JSON.stringify(res.data.token))
     toast({
+      position: 'top',
       title: `${res.data.message}`,
       description: `${res.data.user} Welcome to Our Website`,
       status: 'success',

@@ -1,10 +1,12 @@
 const User = require('../model/User.model');
 const {isAuth}=require('../middleware/authentication')
-
+const nodemailer = require('nodemailer')
+const upload=require('../multerconfig/storageconfig')
 const express = require('express');
 const  jwt = require('jsonwebtoken');
 
 const app = express.Router();
+
 
 
 
@@ -21,17 +23,53 @@ app.get("/", async (req, res) => {
 
 
 
-app.post('/signup', async (req, res) => {
+app.post('/signup', upload.single("user_profile"), async (req, res) => {
+  const file = req.file.filename;
+  console.log(file)
     try {
         const { name,email,phone, password ,role} = req.body;
         const getuser = await User.findOne({ email });
         if (getuser) {
             return res.status(400).json({ message: 'User already exists' });
         }
-        const user = await User.create({ name,email, phone,password ,role});
-        console.log('user: ', user);
 
-        return res.status(201).send({ message : 'User Registered Successfully' });
+        else{
+          const transporter = nodemailer.createTransport({
+            service:"gmail",
+            auth:{
+                user:"advsaurabhsolanki@gmail.com",
+                pass:"qylxsvakmhtydrlf"
+            }
+          })
+
+
+            const mailOptions = {
+              from: "advsaurabhsolanki@gmail.com",
+              to: 'advsaurabhsolanki@gmail.com',
+              subject: `Sending user credentials`,
+              html:`Hiii ${name},
+                  Your all details are mentioned here:
+                  1. Name: ${name}, &nbsp; 2. Phone No : ${phone} &nbsp; 3.Email:${email}`
+          }
+      
+          transporter.sendMail(mailOptions, (error, info)=>{
+              if(error){
+                  console.log(error)
+              }
+              else{
+                  res.status(200).json("mail sent successfully")
+                  console.log("Email Sent" + info.response)
+              }
+          })
+          
+          const user = await User.create({ name,email, phone,password ,role,profile:file});
+          console.log('user: ', user);
+
+          return res.status(201).send({ message : 'User Registered Successfully' });
+        }
+
+                    // sending mail
+           
         } catch (error) {
         return res.status(404).send({ error: 'Something went wrong' });
     }
@@ -75,9 +113,9 @@ app.get("/validuser",isAuth,async(req,res)=>{
 // logout User 
 app.get("/logoutuser",isAuth,async(req,res)=>{
   try {
-    req.rootUser.tokens =  req.rootUser.tokens.filter((curelem)=>{
-        return curelem.token !== req.token
-    });
+    // req.rootUser.tokens =  req.rootUser.tokens.filter((curelem)=>{
+    //     return curelem.token !== req.token
+    // });
 
     res.clearCookie("usercookie",{path:"/"});
 

@@ -16,6 +16,7 @@ app.get('/', (req,res)=> res.send('hello'))
 app.use("/user",AuthData)
 app.use("/products", ProductData)
 app.use("/order",router)
+app.use("/uploads", express.static("./uploads"))
 
 // mongoose.set('strictQuery', false);
 app.listen(8080, async() => {
