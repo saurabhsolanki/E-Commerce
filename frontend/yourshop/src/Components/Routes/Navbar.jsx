@@ -71,7 +71,7 @@ const logoutuser = async() => {
       </div>
 
       <div id="cartDiv">
-      <i class="fa-solid fa-cart-shopping"></i>
+      <i class="fa-solid fa-cart-shopping" style={{color:'black'}}></i>
       <Link to="/cartPage"><Text>Cart</Text></Link>
       </div>
 

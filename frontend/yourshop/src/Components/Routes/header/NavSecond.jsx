@@ -23,10 +23,9 @@ const NavSecond = () => {
           user.isAuthenticated && user.validUser.role == "admin" ? <>
              <Link to='/productDashboard' style={{textDecoration: 'none'}}> <p> Product Dashboard</p> </Link>
             <Link to='/usersDashboard' style={{textDecoration: 'none'}}> <p> User Dashboard</p> </Link>
-          </> : 
-          <Link to='/usersDashboard' style={{textDecoration: 'none'}}> <p> User Dashboard</p> </Link>
+            <p>You are :- Admin</p>
+          </> : <p>You are :- User</p>
         }
-        <p>You are :- {user.isAuthenticated ? user.validUser.role : "User"}</p>
         </div>
       </div>
     </div>

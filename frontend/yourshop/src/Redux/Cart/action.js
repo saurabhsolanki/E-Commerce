@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addToCartSuccess, deleteToCartSuccess, Get_Order_Success, SHIPPING_INFO } from "./actionType";
+import { addToCartSuccess, deleteToCartSuccess, GET_ORDER_DATA, Get_Order_Success, SHIPPING_INFO } from "./actionType";
 
 
 
@@ -44,4 +44,21 @@ export const getOrderSuccess = (payload) =>{
         payload
     }
     
+}
+
+
+export const getOrderData = (token,id) => async(dispatch) =>{
+
+    const {data} = await axios.get(`http://localhost:8080/order/${id}`,{
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+        },
+    })
+    console.log(data)
+    dispatch({
+        type: GET_ORDER_DATA,
+        payload: data
+    })
+
 }

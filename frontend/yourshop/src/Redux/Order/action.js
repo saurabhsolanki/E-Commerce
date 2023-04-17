@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Get_Order_Failure, Get_Order_Request} from './actionType'
+import { Get_Order_Failure, Get_Order_Request, Get_Order_Success} from './actionType'
 
 export const getOrderRequest = () =>{
     return {
@@ -7,13 +7,13 @@ export const getOrderRequest = () =>{
     }
 }
 
-// export const getOrderSuccess = (payload) =>{
-//     return {
-//         type: Get_Order_Success,
-//         payload
-//     }
+export const getOrderSuccess = (payload) =>{
+    return {
+        type: Get_Order_Success,
+        payload
+    }
     
-// }
+}
 
 export const getOrderFailure = () =>{
     return {

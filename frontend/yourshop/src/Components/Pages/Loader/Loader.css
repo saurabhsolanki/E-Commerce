@@ -1,8 +1,6 @@
 .loaderr{
-    width:500px;
-    height: 500px;
+    width:100%;
     margin:auto;
-    margin-top: 14%;
     /* border:2px solid red; */
 }
 .loaderr img{
