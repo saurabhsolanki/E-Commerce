@@ -21,7 +21,8 @@ const Account = () => {
     console.log(order,validUser,"order")
 
     const dispatch = useDispatch()
-    let token = localStorage.getItem("token");
+    let token = JSON.parse(localStorage.getItem("token"));
+    console.log(token)
 
     useEffect(() => {
       setTimeout(() => {
@@ -57,7 +58,7 @@ const Account = () => {
           
           
       </div>
-      {/* {
+      {
         order.length > 0 ? <>
           <div className="order_m">
       <h1>Order Details</h1>
@@ -94,7 +95,7 @@ const Account = () => {
       </div>
       </div>
           </> : ""
-      } */}
+      }
         </>
       )
 }
@@ -102,4 +103,4 @@ const Account = () => {
   )
 }
 
-export default Account
+export default Account
