@@ -55,12 +55,24 @@ const Signup = () => {
           config
         ).then((res) => {
           console.log(res)
-          alert('Sign up Successfully.')
+            toast({
+              position: 'top',
+                title: `${res.data.message}`,
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+              })
           setTimeout(()=>{
                     navigate("/login")
           },1000)
         }).catch((error) => {
-          alert('This email address already exist.')
+                        return toast({
+                          position: 'top',
+                        title: `${error.response.data.message}, Please use another email`,
+                        status: 'error',
+                        duration: 3000,
+                        isClosable: true,
+                      })
           console.log(error)
         });
         // axios.post("http://localhost:8080/user/signup",data).then((res)=>{
